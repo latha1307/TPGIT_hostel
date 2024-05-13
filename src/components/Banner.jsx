@@ -43,10 +43,10 @@ export function Banner()  {
                             </button>
                         </div>
                     <div className='space-x-12 hidden md:flex items-center font-semibold'>
-                        <div className="flex lg:flex items-center hover:text-secondary justify-center  px-3 py-4">
-                            <FlyoutLink href="#" FlyoutContent={RegisterContent}>
+                        <div className="flex lg:flex bg-secondary  transition-all duration-300 rounded-lg text-white hover:bg-blue-900 px-6 py-3">
+                            <FlyoutLogin href="#" FlyoutContent={RegisterContent}>
                                 Registration
-                            </FlyoutLink>
+                            </FlyoutLogin>
                         </div>
                         <button className="flex lg:flex bg-secondary  transition-all duration-300 rounded-lg text-white hover:bg-blue-900 px-6 py-3">
                             <FlyoutLogin href="#" FlyoutContent={LoginContent}>
@@ -57,12 +57,27 @@ export function Banner()  {
                     
                 </div>
             </nav>
-            <div className={`space-y-6 px-6 pt-5 pb-5 mt-2 bg-blue-400 font-semibold opacity-80  ${isMenuOpen ? "block fixed top-24 right-0 left-0": "hidden"}`}>
+            {/* Mobile responsive */}
+            <div className={`space-y-6 px-6 pt-5 pb-5 mt-2 bg-blue-400 font-semibold  ${isMenuOpen ? "block fixed top-24 right-0 left-0": "hidden"}`}>
             {
                 navItems.map(({link, path}) => (
                     <FlyoutBottom key={link} href={path} ><span className='hover:text-gray-200 '>{link}</span></FlyoutBottom>
                 ))
             }
+                <div className='space-x-12 flex items-center font-semibold'>
+                  <div className="flex lg:flex bg-secondary  transition-all duration-300 rounded-lg text-white hover:bg-blue-900 px-6 py-3">
+                    <FlyoutLogin href="#" FlyoutContent={RegisterContent}>
+                      Registration
+                    </FlyoutLogin>
+                  </div>
+                  <button className="flex lg:flex bg-secondary  transition-all duration-300 rounded-lg text-white hover:bg-blue-900 px-6 py-3">
+                    <FlyoutLogin href="#" FlyoutContent={LoginContent}>
+                      Login
+                    </FlyoutLogin>
+                  </button>
+                </div>
+            
+            
             </div>
 
         </>
@@ -187,11 +202,11 @@ const RegisterContent = () => {
         {link: "Existing Student Registration", path: "/existing-student-register"}
     ]
     return (
-      <div className="w-64 bg-white p-1 shadow-xl">
-        <div className=" space-y-3">
+      <div className="w-80 m-auto bg-white p-5 bottom-3 shadow-xl">
+        <div className=" space-y-8">
             {
                 registeritems.map(({link,path}) => (
-                    <Link key={link} to={path} className="block text-1xl px-4 py-4 hover:bg-primary hover:text-white">{link}</Link>
+                    <FlyoutBottom key={link} href={path} className="block text-1xl ml-4">{link}</FlyoutBottom>
             ))
             }
         </div>
@@ -206,11 +221,11 @@ const LoginContent = () => {
         {link: "Student Login", path: "/student-login"}
     ]
     return (
-      <div className="w-40 bg-white p-3 shadow-xl">
-        <div className=" space-y-3">
+      <div className="w-44 m-auto bg-white p-5 bottom-3 shadow-xl">
+        <div className=" space-y-8">
             {
                 registeritems.map(({link,path}) => (
-                    <Link key={link} to={path} className="block text-1xl border-2 rounded border-primary py-2 hover:bg-primary hover:text-white">{link}</Link>
+                   <FlyoutBottom key={link} href={path} className="block text-1xl border-b">{link}</FlyoutBottom>
             ))
             }
         </div>
