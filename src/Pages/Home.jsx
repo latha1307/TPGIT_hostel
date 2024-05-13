@@ -8,7 +8,7 @@ function Home() {
     <>
         <div>
             <Banner/>
-            <div className='bgWelcome  h-[100vh] mt-26 p-20 bg-cover' >
+            <div className='bgWelcome  h-[100vh] mt-26 p-16 bg-cover' >
               <Welcome/>
             </div>
             <Footer/>
