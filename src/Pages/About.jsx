@@ -1,5 +1,4 @@
 import { Banner } from "../components/Banner";
-import { NavBar } from "../components/NavBar";
 
 
 function About() {
@@ -7,7 +6,7 @@ function About() {
         <>
             <div>
                 <Banner/>
-                <NavBar/>
+               
             </div>
         </>
     )
