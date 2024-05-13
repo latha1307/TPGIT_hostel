@@ -202,7 +202,7 @@ const RegisterContent = () => {
         {link: "Existing Student Registration", path: "/existing-student-register"}
     ]
     return (
-      <div className="w-80 m-auto bg-white p-5 md:left-5 bottom-3 shadow-xl">
+      <div className="lg:w-80 w-60 m-auto bg-white p-5 md:left-5 bottom-3 shadow-xl">
         <div className=" space-y-8">
             {
                 registeritems.map(({link,path}) => (
