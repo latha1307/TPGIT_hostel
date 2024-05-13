@@ -3,10 +3,10 @@ export const Welcome = () => {
   return (
     <>
         <div>
-            <div className="bgWelcomebg text-white text-center h-auto w-full md:w-1/2 flex flex-col border-none rounded-3xl m-auto justify-center items-center">
-              <h1 className="font-semibold lg:text-3xl text-2xl p-6 md:p-6 mt-8 border-b">HOSTEL MANAGEMENT</h1>
-              <hr/>
-              <p className="m-4 md:m-16 text-sm ml-8 mr-8 md:text-xl mb-28 tracking-wider">The Hostel is managed by the Hostel Residents Council consisting of Patron, Chief Warden, Wardens, Manager, Deputy Wardens, Resident Tutors and Student Representatives. The Hostel is managed by the Hostel Residents Council consisting of Patron, Chief Warden, Wardens, Manager, Deputy Wardens, Resident Tutors and Student Representatives</p>
+            <div className="bgWelcomebg text-white text-center h-auto w-full md:w-1/2  flex flex-col border-none rounded-3xl m-auto justify-center items-center">
+              <h1 className="font-semibold lg:text-3xl text-xl p-6 md:p-6 mt-6 sm:mt-8 border-b">HOSTEL MANAGEMENT</h1>
+              <hr className="my-2"/>
+              <p className="m-4 md:m-8 text-sm ml-8 mr-8 md:text-xl lg:mb-28 mb-10 tracking-wider">The Hostel is managed by the Hostel Residents Council consisting of Patron, Chief Warden, Wardens, Manager, Deputy Wardens, Resident Tutors and Student Representatives. The Hostel is managed by the Hostel Residents Council consisting of Patron, Chief Warden, Wardens, Manager, Deputy Wardens, Resident Tutors and Student Representatives</p>
             </div>
         </div>
       
