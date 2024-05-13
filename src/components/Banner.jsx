@@ -64,13 +64,13 @@ export function Banner()  {
                     <FlyoutBottom key={link} href={path} ><span className='hover:text-gray-200 '>{link}</span></FlyoutBottom>
                 ))
             }
-                <div className='space-x-12 flex items-center font-semibold'>
-                  <div className="flex lg:flex bg-secondary  transition-all duration-300 rounded-lg text-white hover:bg-blue-900 px-6 py-3">
+                <div className='flex justify-around items-center'> {/* Align items at the center */}
+                  <div className="flex lg:flex bg-secondary  transition-all duration-300 rounded-lg text-white hover:bg-blue-900 px-6 py-3 my-2">
                     <FlyoutLogin href="#" FlyoutContent={RegisterContent}>
                       Registration
                     </FlyoutLogin>
                   </div>
-                  <button className="flex lg:flex bg-secondary  transition-all duration-300 rounded-lg text-white hover:bg-blue-900 px-6 py-3">
+                  <button className="flex lg:flex bg-secondary  transition-all duration-300 rounded-lg text-white hover:bg-blue-900 px-6 py-3 my-2">
                     <FlyoutLogin href="#" FlyoutContent={LoginContent}>
                       Login
                     </FlyoutLogin>
@@ -202,7 +202,7 @@ const RegisterContent = () => {
         {link: "Existing Student Registration", path: "/existing-student-register"}
     ]
     return (
-      <div className="w-80 m-auto bg-white p-5 bottom-3 shadow-xl">
+      <div className="w-80 m-auto bg-white p-5 md:left-5 bottom-3 shadow-xl">
         <div className=" space-y-8">
             {
                 registeritems.map(({link,path}) => (
