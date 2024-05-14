@@ -7,6 +7,7 @@ import NewRegister from './Pages/NewRegistration';
 import ExistingRegistration from './Pages/ExistingRegistration'
 import AdminLogin from './Pages/Login/AdminLogin';
 import StudentLogin from './Pages/Login/StudentLogin';
+import HomePage from './Pages/Student/HomePage';
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
           <Route path='/existing-student-register' element={<ExistingRegistration/>}/>
           <Route path='/admin-login' element={<AdminLogin/>}/>
           <Route path='/student-login' element={<StudentLogin/>}/>
-
+          <Route path='/student-profile' element={<HomePage />}/>
           
         </Routes>
         

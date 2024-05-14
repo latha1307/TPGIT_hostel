@@ -1,7 +1,11 @@
 
+import { useNavigate } from 'react-router-dom'
 import '../App.css'
 
+
+
 export const SLogin = () => {
+    const navigate = useNavigate();
   return (
     <>
         <div >
@@ -23,7 +27,7 @@ export const SLogin = () => {
                     </div>
                     <span className='text-blue-500 font-sans'>Forget Password?</span>
                 </div>
-                <button className='w-full mb-4 font-sans text-[18px] mt-6 rounded-full bg-white text-orange-900 hover:bg-orange-600 hover:text-white py-2 transition-colors duration-300' type='submit'>Login</button>
+                <button onClick={() => navigate('/student-profile')} className='w-full mb-4 font-sans text-[18px] mt-6 rounded-full bg-white text-orange-900 hover:bg-orange-600 hover:text-white py-2 transition-colors duration-300' type='submit'>Login</button>
                 
                 </form>
             </div>
