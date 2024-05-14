@@ -1,6 +1,6 @@
-import { SDetails } from "../../components/SDetails";
-import { SNavbar } from "../../components/SNavbar";
-import { SProfile } from "../../components/SProfile";
+import { SDetails } from "../../components/Student/SDetails";
+import { SNavbar } from "../../components/Student/SNavbar";
+import { SProfile } from "../../components/Student/SProfile";
 
 
 function HomePage(){

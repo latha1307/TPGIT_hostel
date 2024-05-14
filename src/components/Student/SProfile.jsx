@@ -1,4 +1,4 @@
-import StudProfile from '../assets/studentProfileImage.png' 
+import StudProfile from '../../assets/studentProfileImage.png' 
 
 export const SProfile = () => {
   return (

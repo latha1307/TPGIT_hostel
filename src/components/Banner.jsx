@@ -16,14 +16,14 @@ export function Banner()  {
 
     const navItems = [
         {link: "Home", path: "/home"},
-        {link: "About", path: "#"},
+        {link: "About", path: "/about"},
         {link: "Fees", path: "#"},
         {link: "Contact", path: "#"},
     ];
 
     return (
         <>
-            <nav className=' bg-white md:px-14 p-3 max-w-screen-2x1 sticky border-b mx-auto top-0 right-0 left-0'>
+            <nav className=' bg-white md:px-14 p-3 max-w-screen-2x1 sticky lg:border-b mx-auto top-0 right-0 left-0'>
                 <div className='text-lg container mx-auto flex justify-between items-center '>
                     <div className='flex items-center justify-between space-x-5'>
                         <a href="/" className='text-2xl  flex items-center space-x-3 text-primary'>
@@ -58,7 +58,7 @@ export function Banner()  {
                 </div>
             </nav>
             {/* Mobile responsive */}
-            <div className={`space-y-6 px-6 pt-5 pb-5 mt-2 bg-blue-400 font-semibold  ${isMenuOpen ? "block fixed top-24 right-0 left-0": "hidden"}`}>
+            <div className={`space-y-6 px-6 pt-5 pb-5 mt-2 bg-blue-400 font-semibold  ${isMenuOpen ? "block sticky top-24 right-0 left-0": "hidden"}`}>
             {
                 navItems.map(({link, path}) => (
                     <FlyoutBottom key={link} href={path} ><span className='hover:text-gray-200 '>{link}</span></FlyoutBottom>

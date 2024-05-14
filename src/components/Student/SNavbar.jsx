@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import logo from '../assets/TPGIT_logo_created.png';
+import logo from '../../assets/TPGIT_logo_created.png';
 import { FaXmark, FaBars } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
 import { AnimatePresence, motion } from "framer-motion";
