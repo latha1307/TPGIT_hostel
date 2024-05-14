@@ -58,7 +58,7 @@ export const RegisterForm = () => {
                     </div>
                     <div className="space-y-2">
                         <h4 className="font-sans">Date of Birth <span className="text-red-500 font-bold">*</span></h4>
-                        <input className="w-10/12 px-2 py-2 rounded-lg font-medium border border-gray-500  text-sm  focus:border-3   bg-white  focus:border-gray-400" type="text" />
+                        <input type="date" className="w-10/12 px-2 py-2 rounded-lg font-medium border border-gray-500 cursor-pointer  text-sm  focus:border-3   bg-white  focus:border-gray-400" placeholder="Select date" />
                     </div>
                     
                     <div className="space-y-2 font-sans">
