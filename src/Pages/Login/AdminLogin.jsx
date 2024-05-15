@@ -1,4 +1,4 @@
-import { ALogin } from "../../components/ALogin";
+import { ALogin } from "../../components/Admin/ALogin";
 //import bgImage from '../../assets/studentlogin.jpeg'
 
 

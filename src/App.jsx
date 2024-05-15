@@ -7,7 +7,9 @@ import NewRegister from './Pages/NewRegistration';
 import ExistingRegistration from './Pages/ExistingRegistration'
 import AdminLogin from './Pages/Login/AdminLogin';
 import StudentLogin from './Pages/Login/StudentLogin';
-import HomePage from './Pages/Student/HomePage';
+import SHomePage from './Pages/Student/HomePage';
+import Vacate from './Pages/Student/Vacate';
+import AHomePage from './Pages/Admin/HomePage';
 
 function App() {
   return (
@@ -21,7 +23,9 @@ function App() {
           <Route path='/existing-student-register' element={<ExistingRegistration/>}/>
           <Route path='/admin-login' element={<AdminLogin/>}/>
           <Route path='/student-login' element={<StudentLogin/>}/>
-          <Route path='/student-profile' element={<HomePage />}/>
+          <Route path='/student-profile' element={<SHomePage />}/>
+          <Route path='/student-vacate' element={<Vacate />}/>
+          <Route path='/admin-home' element={<AHomePage />}/>
           
         </Routes>
         
