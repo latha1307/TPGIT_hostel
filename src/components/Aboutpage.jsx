@@ -26,7 +26,7 @@ import { fadeIn } from "./variants";
   
   export const Aboutpage = () => {
     return (
-      <div className="container text-white px-4 py-8 ">
+      <div className="container mx-auto mt-10  text-white px-4 py-8 ">
         <motion.h1 variants={fadeIn("down", 0.2)} initial="hidden" whileInView={"show"} viewport={{once:false, amount: 0.7}} className="text-3xl font-semibold mb-4 text-center ">
           About TPGIT Hostel
         </motion.h1>
@@ -105,14 +105,14 @@ import { fadeIn } from "./variants";
             Facilities
           </motion.h2>
           <div  className="grid grid-cols-1 sm:grid-cols-2 lg:ml-32 m-8 mt-10 md:grid-cols-3 gap-y-6 text-white">
-            <motion.div variants={fadeIn("right", 0.2)} initial="hidden" whileInView={"show"} viewport={{once:false, amount: 0.7}} className="bg-secondary h-60 lg:w-80 w-full p-10 border-none rounded-3xl shadow-xl   hover:shadow-2xl">
+            <motion.div variants={fadeIn("right", 0.2)} initial="hidden" whileInView={"show"} viewport={{once:false, amount: 0.7}} className="bg-secondary h-60 w-80 p-10 border-none rounded-3xl shadow-xl   hover:shadow-2xl">
                 <div className="flex text-center ">
                     <FaWater className="w-14 mt-1" />
                     <h1 className="text-xl font-medium " >Water Facility</h1>
                 </div>
                 <p className="mt-8 text-md ml-4 text-gray-300">24/7 access to clean and hygienic water.</p>
             </motion.div>
-            <motion.div variants={fadeIn("right", 0.4)} initial="hidden" whileInView={"show"} viewport={{once:false, amount: 0.7}} className="bg-secondary h-60 lg:w-80 w-full  p-10 border-none rounded-3xl shadow-xl  hover:shadow-2xl">
+            <motion.div variants={fadeIn("right", 0.4)} initial="hidden" whileInView={"show"} viewport={{once:false, amount: 0.7}} className="bg-secondary h-60 w-80  p-10 border-none rounded-3xl shadow-xl  hover:shadow-2xl">
                 <div className="flex text-center ">
                     <FaNewspaper className="w-12 mt-2" />
                     <h1 className="text-xl font-medium " >Newspaper and Magazines</h1>
@@ -120,14 +120,14 @@ import { fadeIn } from "./variants";
                 
                 <p className="mt-2 text-md ml-4 text-gray-300">Subscribed newspapers and magazines for students<span>&apos;</span> reading pleasure.</p>
             </motion.div>
-            <motion.div variants={fadeIn("right", 0.2)} initial="hidden" whileInView={"show"} viewport={{once:false, amount: 0.7}} className="bg-secondary h-60 lg:w-80 w-full  p-10 border-none rounded-3xl shadow-xl  hover:shadow-2xl  ">
+            <motion.div variants={fadeIn("right", 0.2)} initial="hidden" whileInView={"show"} viewport={{once:false, amount: 0.7}} className="bg-secondary h-60 w-80  p-10 border-none rounded-3xl shadow-xl  hover:shadow-2xl  ">
                 <div className="flex text-center ">
                     <FaDumbbell className="w-14 mt-1" />
                     <h1 className="text-xl font-medium" >Mini-Gym</h1>
                 </div>
                 <p className="mt-8 text-md ml-4 text-gray-300 ">Fitness equipment available for students use.</p>
             </motion.div>
-            <motion.div variants={fadeIn("left", 0.6)} initial="hidden" whileInView={"show"} viewport={{once:false, amount: 0.7}} className="bg-secondary h-60 lg:w-80 w-full  p-10 border-none rounded-3xl shadow-xl  hover:shadow-2xl  ">
+            <motion.div variants={fadeIn("left", 0.6)} initial="hidden" whileInView={"show"} viewport={{once:false, amount: 0.7}} className="bg-secondary h-60 w-80  p-10 border-none rounded-3xl shadow-xl  hover:shadow-2xl  ">
                 <div className="flex text-center ">
                     <FaTv className="w-14 mt-1" />
                     <h1 className="text-xl font-medium" >TV Facility</h1>
@@ -135,35 +135,35 @@ import { fadeIn } from "./variants";
 
                 <p className="mt-8 text-md ml-4 text-gray-300">TVs  for entertainment purpose.</p>
             </motion.div>
-            <motion.div variants={fadeIn("left", 0.4)} initial="hidden" whileInView={"show"} viewport={{once:false, amount: 0.7}} className="bg-secondary h-60 lg:w-80 w-full  p-10 border-none rounded-3xl shadow-xl  hover:shadow-2xl  ">
+            <motion.div variants={fadeIn("left", 0.4)} initial="hidden" whileInView={"show"} viewport={{once:false, amount: 0.7}} className="bg-secondary h-60 w-80   p-10 border-none rounded-3xl shadow-xl  hover:shadow-2xl  ">
                 <div className="flex text-center ">
                     <FaRunning className="w-14 mt-1" />
                     <h1 className="text-xl font-medium" >Sports Kit</h1>
                 </div>
                 <p className="mt-8 text-md ml-4 text-gray-300">Take advantage of our top-notch sports facilities for various athletic activities</p>
             </motion.div>
-            <motion.div variants={fadeIn("left", 0.2)} initial="hidden" whileInView={"show"} viewport={{once:false, amount: 0.7}} className="bg-secondary h-60 lg:w-80 w-full  p-4 border-none rounded-3xl shadow-xl  hover:shadow-2xl  ">
+            <motion.div variants={fadeIn("left", 0.2)} initial="hidden" whileInView={"show"} viewport={{once:false, amount: 0.7}} className="bg-secondary h-60 w-80  p-4 border-none rounded-3xl shadow-xl  hover:shadow-2xl  ">
                 <div className="flex text-center ">
                     <FaBed className="w-14 mt-1" />
                     <h1 className="text-xl font-medium" >Separate Cot, Table, and Chair</h1>
                 </div>
                 <p className="mt-6 text-md ml-4 text-gray-300">Individual furniture provided for each students comfort and study areas with comfortable furniture for focused learning and collaboration.</p>
             </motion.div>
-            <motion.div variants={fadeIn("right", 0.6)} initial="hidden" whileInView={"show"} viewport={{once:false, amount: 0.7}} className="bg-secondary h-60 lg:w-80 w-full  p-10 border-none rounded-3xl shadow-xl hover:shadow-2xl ">
+            <motion.div variants={fadeIn("right", 0.6)} initial="hidden" whileInView={"show"} viewport={{once:false, amount: 0.7}} className="bg-secondary h-60 w-80  p-10 border-none rounded-3xl shadow-xl hover:shadow-2xl ">
                 <div className="flex text-center ">
                     <FaPhone className="w-14 mt-1" />
                     <h1 className="text-xl font-medium" >STD Booth</h1>
                 </div>
                 <p className="mt-8 text-md ml-4 text-gray-300">Booths available for student<span>&apos;</span>s private phone calls.</p>
             </motion.div>
-            <motion.div variants={fadeIn("right", 0.4)} initial="hidden" whileInView={"show"} viewport={{once:false, amount: 0.7}} className="bg-secondary h-60 lg:w-80 w-full  p-10 border-none rounded-3xl shadow-xl hover:shadow-2xl ">
+            <motion.div variants={fadeIn("right", 0.4)} initial="hidden" whileInView={"show"} viewport={{once:false, amount: 0.7}} className="bg-secondary h-60 w-80  p-10 border-none rounded-3xl shadow-xl hover:shadow-2xl ">
                 <div className="flex text-center ">
                     <BsBrowserChrome className="w-14 mt-1" />
                     <h1 className="text-xl font-medium" >Browsing Center</h1>
                 </div>
                 <p className="mt-8 text-md ml-4 text-gray-300">Computer terminals with internet access for browsing.</p>
             </motion.div>
-            <motion.div variants={fadeIn("right", 0.2)} initial="hidden" whileInView={"show"} viewport={{once:false, amount: 0.7}} className="bg-secondary h-60 lg:w-80 w-full  p-10 border-none rounded-3xl shadow-xl hover:shadow-2xl ">
+            <motion.div variants={fadeIn("right", 0.2)} initial="hidden" whileInView={"show"} viewport={{once:false, amount: 0.7}} className="bg-secondary h-60 w-80  p-10 border-none rounded-3xl shadow-xl hover:shadow-2xl ">
                 <div className="flex text-center ">
                     <FaFirstAid className="w-14 mt-1" />
                     <h1 className="text-xl font-medium" >First Aid</h1>
