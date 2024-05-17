@@ -65,12 +65,12 @@ export function Banner()  {
                 ))
             }
                 <div className='flex justify-around items-center'> {/* Align items at the center */}
-                  <div className="flex lg:flex bg-secondary  transition-all duration-300 rounded-3xl text-white hover:bg-blue-900 px-6 py-3 my-2">
+                  <div className="flex lg:flex bg-secondary  transition-all z-10 duration-300 rounded-3xl text-white hover:bg-blue-900 px-6 py-3 my-2">
                     <FlyoutLogin href="#" FlyoutContent={RegisterContent}>
                       Registration
                     </FlyoutLogin>
                   </div>
-                  <button className="flex lg:flex bg-secondary  transition-all duration-300 rounded-3xl text-white hover:bg-blue-900 px-6 py-3 my-2">
+                  <button className="flex lg:flex bg-secondary  transition-all z-10 duration-300 rounded-3xl text-white hover:bg-blue-900 px-6 py-3 my-2">
                     <FlyoutLogin href="#" FlyoutContent={LoginContent}>
                       Login
                     </FlyoutLogin>
