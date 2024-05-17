@@ -23,7 +23,7 @@ export function Banner()  {
 
     return (
         <>
-            <nav className=' bg-white  md:px-14 p-3 max-w-screen-2x1 sticky lg:border-b mx-auto top-0 right-0 left-0'>
+            <nav className=' bg-white  md:px-14 p-3 max-w-screen-2x1 sticky z-30 lg:border-b mx-auto top-0 right-0 left-0'>
                 <div className='text-lg container mx-auto flex justify-between items-center '>
                     <div className='flex items-center justify-between space-x-8'>
                         <a href="/" className='text-2xl  flex items-center space-x-3 text-primary'>
