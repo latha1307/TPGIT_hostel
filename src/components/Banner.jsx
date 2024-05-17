@@ -23,9 +23,9 @@ export function Banner()  {
 
     return (
         <>
-            <nav className=' bg-white md:px-14 p-3 max-w-screen-2x1 sticky z-50 lg:border-b mx-auto top-0 right-0 left-0'>
+            <nav className=' bg-gray-300 md:px-14 p-3 max-w-screen-2x1 sticky z-50 lg:border-b mx-auto top-0 right-0 left-0'>
                 <div className='text-lg container mx-auto flex justify-between items-center '>
-                    <div className='flex items-center justify-between space-x-5'>
+                    <div className='flex items-center justify-between space-x-8'>
                         <a href="/" className='text-2xl  flex items-center space-x-3 text-primary'>
                             <img src={logo} alt="" className='inline-block w-44'/> 
                         </a>
