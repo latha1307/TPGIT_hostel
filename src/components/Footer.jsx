@@ -9,7 +9,7 @@ import { Typography } from "@material-tailwind/react";
 export const Footer = () => {
   return (
     <>
-        <hr className=" h-3 mt-10 bg-primary border-0 "/>
+        <hr className=" h-3  bg-primary border-0 "/>
         <div className="bg-gray-800 text-white px-10 py-8 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 ">
             <div className="space-y-5 w-56">
                 <h4>Warden,</h4>
