@@ -4,6 +4,7 @@ import '../../App.css'
 
 
 
+
 export const SLogin = () => {
     const navigate = useNavigate();
   return (
@@ -31,6 +32,8 @@ export const SLogin = () => {
                 
                 </form>
             </div>
+            
+
         </div>
     </>
   )

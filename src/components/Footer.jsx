@@ -63,11 +63,12 @@ export const Footer = () => {
                 </div>
             </div>
             <div className="space-y-5">
-                <h4 > Login</h4>
+                <h4 > Developers </h4>
                 <div className="ml-6 space-y-4">
                     <ul className="space-y-2">
-                        <li>Admin Login</li>
-                        <li>Student Login</li>
+                        <li>Lathadevi B</li>
+                        <li>Bhavani R</li>
+                        <li>Jana K</li>
                     </ul>
                 </div>
             </div>
