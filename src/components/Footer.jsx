@@ -69,6 +69,9 @@ export const Footer = () => {
                         <li>Lathadevi B</li>
                         <li>Bhavani R</li>
                         <li>Jana K</li>
+                        <li>Agarsha S</li>
+                        <li>Iniya G</li>
+                        <li></li>
                     </ul>
                 </div>
             </div>
