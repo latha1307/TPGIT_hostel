@@ -38,7 +38,7 @@ import { fadeIn } from "./variants";
                <img src={b1} alt="Boys Hostel" className="mb-4  rounded-3xl" />
                <h3 className="text-lg font-semibold mb-2">B1 Hostel</h3>
               <p className="text-gray-200">
-                 Welcome to B1 Hostel.The B1 Hostel offers accommodation for
+                 The B1 Hostel offers accommodation for
                  approximately 210 members within the college hostel premises,
                  providing comfortable living spaces for male students.
                </p>
