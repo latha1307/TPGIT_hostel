@@ -1,6 +1,7 @@
 import { Welcome } from '../components/Welcome'
 import { Banner } from '../components/Banner'
 import { Footer } from '../components/Footer'
+import { HomeBody } from '../components/HomeBody';
 
 
 function Home() {
@@ -8,8 +9,11 @@ function Home() {
     <>
         <div>
             <Banner/>
-            <div className='bgWelcome  h-[100vh] mt-26 p-16 bg-cover' >
+            <div className='bgWelcome  h-[100vh] mt-26 lg:p-16 p-8 bg-cover' >
               <Welcome/>
+            </div>
+            <div>
+              <HomeBody/>
             </div>
             <Footer/>
         </div>

@@ -2,11 +2,11 @@
 export const Welcome = () => {
   return (
     <>
-        <div>
-            <div className="bgWelcomebg text-white text-center h-auto w-full md:w-1/2  flex flex-col border-none rounded-3xl ml-auto mr-auto sm:left-0 justify-center items-center">
-              <h1 className="font-semibold lg:text-3xl text-xm p-6 md:p-6 mt-6 sm:mt-8 border-b">HOSTEL MANAGEMENT</h1>
+        <div> 
+            <div className="bgWelcomebg text-white  text-center h-[80vh] lg:w-1/2 lg:space-y-10 space-x-6 flex flex-col border-none rounded-3xl m-auto justify-items-center items-center">
+              <h1 className="font-semibold lg:text-3xl text-xl p-6 md:p-6 mt-6 sm:mt-8 border-b">HOSTEL MANAGEMENT</h1>
               <hr className="my-2"/>
-              <p className="m-4 md:m-8 text-sm ml-8 mr-8 lg:text-xl lg:mb-28 mb-10 tracking-wider">The Hostel is managed by the Hostel Residents Council consisting of Patron, Chief Warden, Wardens, Manager, Deputy Wardens, Resident Tutors and Student Representatives. The Hostel is managed by the Hostel Residents Council consisting of Patron, Chief Warden, Wardens, Manager, Deputy Wardens, Resident Tutors and Student Representatives</p>
+              <p className="m-8 md:m-8 text-md text-clip lg:text-xl lg:mb-28 mb-10 p-4 tracking-wider">The Hostel is managed by the Hostel Residents Council consisting of Patron, Chief Warden, Wardens, Manager, Deputy Wardens, Resident Tutors and Student Representatives.Ragging in all its forms is banned as it is treated as a cognizable offence. Any resident found guilty of ragging will be dismissed from hostel and college. Further, legal action will be taken against the defaulters.</p>
             </div>
         </div>
       

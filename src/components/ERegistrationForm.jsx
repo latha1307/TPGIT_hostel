@@ -1,6 +1,124 @@
-
+import { useState } from "react"
+import { useNavigate } from "react-router-dom"
+import axios from "axios"
+import Validation from "../Validation/RegisterValidate"
 
 export const ERegisterForm = () => {
+    const [values, setValues] = useState({
+        roll_no : '',
+        fees_receipt: null,
+        course: '',
+        year: '',
+        student_name: '',
+        student_photo: null,
+        DOB: '',
+        blood_group: '',
+        other_BG: '',
+        gender: '',
+        nationality: '',
+        religion: '',
+        community: '',
+        caste: '',
+        differently_abled: '',
+        student_mobile_no: '',
+        student_email_id: '',
+        annual_income: '',
+        father_name: '',
+        father_occupation: '',
+        father_mobile_no: '',
+        father_email_id: '',
+        mother_name: '',
+        mother_occupation: '',
+        mother_mobile_no: '',
+        mother_email_id: '',
+        guardian_name: '',
+        guardian_occupation: '',
+        guardian_mobile_no: '',
+        guardian_email_id: '',
+        permanent_address: '',
+        permanent_city: '',
+        permanent_state: '',
+        permanent_country: '',
+        permanent_pincode: '',
+        communication_address: '',
+        communication_city: '',
+        communication_state: '',
+        communication_country: '',
+        communication_pincode: ''
+    })
+
+    const navigate = useNavigate();
+
+    const [sameAsPermanent, setSameAsPermanent] = useState(false);
+
+    const [errors, setErrors] = useState({})
+
+    const handleInput = (event) => {
+        const { name, value } = event.target;
+        setValues({ ...values, [name]: value });
+    }
+    const handleFileChange = (event) => {
+        const { name, files } = event.target;
+        setValues({ ...values, [name]: files[0] });
+    };
+    const [checkboxState, setCheckboxState] = useState({
+        father: false,
+        mother: false,
+        guardian: false
+    });
+    const handleCheckbox = ( field) => {
+        setCheckboxState(prevState => ({
+            ...prevState,
+            [field]: !prevState[field]
+        }));
+    };
+
+    const handleCheckboxChange = (values, setValues) => {
+        setSameAsPermanent(!sameAsPermanent); // Toggle the state of the checkbox
+        if (!sameAsPermanent) {
+            // If checkbox is checked, copy values from permanent address to communication address
+            setValues({
+                ...values,
+                communication_address: values.permanent_address,
+                communication_city: values.permanent_city,
+                communication_state: values.permanent_state,
+                communication_country: values.permanent_country,
+                communication_pincode: values.permanent_pincode
+            });
+        } else {
+            // If checkbox is unchecked, clear communication address fields
+            setValues({
+                ...values,
+                communication_address: "",
+                communication_city: "",
+                communication_state: "",
+                communication_country: "",
+                communication_pincode: ""
+            });
+        }
+    };
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        setErrors(Validation(values));
+
+        const formData = new FormData();
+        Object.entries(values).forEach(([key, value]) => {
+            formData.append(key, value);
+        });
+
+        try {
+            const response = await axios.post('http://localhost:8081/api/existing-register', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+            navigate('/student-login');
+            console.log(response)
+        } catch (error) {
+            console.log('Error submitting the form:', error);
+        }
+    };
+
     return (
       <><div className="flex justify-center ">
           <div className="mt-5 border w-11/12 rounded">
@@ -8,21 +126,26 @@ export const ERegisterForm = () => {
                   <h3 className="text-3xl md:1xl  font-sans">Hostel Application Form Academic Year 2024-2025</h3>
   
               </div>
+              <form action="" onSubmit={handleSubmit}>
               {/* Admission Details */}
               <div className=" space-y-6 border-b p-10">
                   <h6 className="text-2xl text-secondary font-bold tracking-wider ">Admission Details</h6>
                   <div className="grid lg:grid-cols-3 md:grid-cols-1 gap-2 ">
                       <div className="space-y-2">
                           <h4 className="font-sans">Roll No. <span className="text-red-500 font-bold">*</span></h4>
-                          <input className="w-10/12 px-2 py-2 rounded-lg font-medium font-sans border border-gray-500  text-sm  focus:border-3   bg-white  focus:border-gray-400" type="text" />
+                          <input name="roll_no" onChange={handleInput} className="w-10/12 px-2 py-2 rounded-lg font-medium font-sans border border-gray-500  text-sm  focus:border-3   bg-white  focus:border-gray-400" type="text" />
+                          <span className="text-sm text-red-500">{errors.roll_no && <p>{errors.roll_no}</p>}</span>
+                      
                       </div>
                       <div className="space-y-2">
                           <h4 className="font-sans">Upload your Last Semester / Year College fees receipt <span className="text-red-500 font-bold">*</span></h4>
-                          <input className="w-10/12 rounded-lg font-medium  text-gray-900 font-sans border-gray-400  border cursor-pointer bg-white  focus:border-gray-400" id="file_input" type="file"/>
+                          <input name="fees_receipt" onChange={handleFileChange} className="w-10/12 rounded-lg font-medium  text-gray-900 font-sans border-gray-400  border cursor-pointer bg-white  focus:border-gray-400" id="file_input" type="file"/>
+                          <span className="text-sm text-red-500">{errors.fees_receipt && <p>{errors.fees_receipt}</p>}</span>
+                      
                       </div>
                       <div className="space-y-2 font-sans">
                           <h4 className="font-sans">Programme <span className="text-red-500 font-bold">*</span></h4>
-                          <select id="courses" className="bg-white border px-2 py-2 font-medium cursor-pointer font-sans border-gray-500 text-gray-900 text-sm rounded-lg focus:border-gray-400 w-10/12">
+                          <select name="courses" onChange={handleInput} id="courses" className="bg-white border px-2 py-2 font-medium cursor-pointer font-sans border-gray-500 text-gray-900 text-sm rounded-lg focus:border-gray-400 w-10/12">
                               <option selected className="font-sans">Select Course</option>
                               <option value="CE" className="font-sans">B.E Civil Engineering</option>
                               <option value="CSE" className="font-sans">B.E Computer Science Engineering</option>
@@ -30,15 +153,18 @@ export const ERegisterForm = () => {
                               <option value="EEE" className="font-sans">B.E Electrical and Electronics Engineering</option>
                               <option value="ME" className="font-sans">B.E Mechanical Engineering</option>
                           </select>                    
+                          <span className="text-sm text-red-500">{errors.courses && <p>{errors.courses}</p>}</span>
+                      
                       </div>
                       <div className="space-y-2">
                           <h4 className="font-sans">Year of Study<span className="text-red-500 font-bold">*</span></h4>
-                          <select id="fyear" className="bg-white border px-2 py-2 font-medium cursor-pointer font-sans border-gray-500 text-gray-900 text-sm rounded-lg focus:border-gray-400 w-10/12 ">
+                          <select name="year" onChange={handleInput} id="fyear" className="bg-white border px-2 py-2 font-medium cursor-pointer font-sans border-gray-500 text-gray-900 text-sm rounded-lg focus:border-gray-400 w-10/12 ">
                               <option selected className="font-sans">Year</option>
                               <option value="first" className="font-sans">I</option>
                               <option value="second" className="font-sans">II</option>
                               <option value="third" className="font-sans">III</option>
                               <option value="fourth" className="font-sans">IV</option>
+                              <span className="text-sm text-red-500">{errors.year && <p>{errors.year}</p>}</span>
 
                           </select>                    
                       </div>                    
@@ -50,20 +176,26 @@ export const ERegisterForm = () => {
                   <div className="grid lg:grid-cols-3 md:grid-cols-1 gap-2">
                       <div className="space-y-2">
                           <h4 className="font-sans">Student Name <span className="text-red-500 font-bold">*</span></h4>
-                          <input className="w-10/12 px-1 py-2 rounded-lg font-medium border border-gray-500  text-sm  focus:border-3   bg-white  focus:border-gray-400" type="text" />
+                          <input name="student_name" onChange={handleInput} className="w-10/12 px-1 py-2 rounded-lg font-medium border border-gray-500  text-sm  focus:border-3   bg-white  focus:border-gray-400" type="text" />
+                          <span className="text-sm text-red-500">{errors.student_name && <p>{errors.student_name}</p>}</span>
+                      
                       </div>
                       <div className="space-y-2">
                           <h4 className="font-sans">Upload your passport size photo <span className="text-red-500 font-bold">*</span></h4>
-                          <input className="w-10/12 rounded-lg font-medium text-gray-900 font-sans border-gray-500  border cursor-pointer bg-white  focus:border-gray-400" id="file_input" type="file"/>
+                          <input name="student_photo" onChange={handleFileChange} className="w-10/12 rounded-lg font-medium text-gray-900 font-sans border-gray-500  border cursor-pointer bg-white  focus:border-gray-400" id="file_input" type="file"/>
+                          <span className="text-sm text-red-500">{errors.student_photo && <p>{errors.student_photo}</p>}</span>
+                      
                       </div>
                       <div className="space-y-2">
                           <h4 className="font-sans">Date of Birth <span className="text-red-500 font-bold">*</span></h4>
-                          <input type="date" className="w-10/12 px-2 py-2 rounded-lg font-medium border border-gray-500 cursor-pointer text-sm  focus:border-3   bg-white  focus:border-gray-400" placeholder="Select date" />
+                          <input name="DOB" type="date" onChange={handleInput} className="w-10/12 px-2 py-2 rounded-lg font-medium border border-gray-500 cursor-pointer text-sm  focus:border-3   bg-white  focus:border-gray-400" placeholder="Select date" />
+                          <span className="text-sm text-red-500">{errors.DOB && <p>{errors.DOB}</p>}</span>
+                      
                       </div>
                       
                       <div className="space-y-2 font-sans">
                           <h4 className="font-sans">Blood Group <span className="text-red-500 font-bold">*</span></h4>
-                          <select id="blood-group" className="bg-white border px-2 py-2 font-medium cursor-pointer font-sans border-gray-500 text-gray-900 text-sm rounded-lg focus:border-gray-400 w-10/12">
+                          <select name="blood_group" onChange={handleInput} id="blood-group" className="bg-white border px-2 py-2 font-medium cursor-pointer font-sans border-gray-500 text-gray-900 text-sm rounded-lg focus:border-gray-400 w-10/12">
                               <option selected className="font-sans">Select Group</option>
                               <option value="A+" className="font-sans">A+</option>
                               <option value="A-" className="font-sans">A-</option>
@@ -73,34 +205,41 @@ export const ERegisterForm = () => {
                               <option value="AB-" className="font-sans">AB-</option>
                               <option value="NA" className="font-sans">NA</option>
                           </select>                    
+                          <span className="text-sm text-red-500">{errors.blood_group && <p>{errors.blood_group}</p>}</span>
+                      
                       </div>
                       <div className="space-y-2">
                           <h4 className="font-sans">Other Blood Group </h4>
-                          <input className="w-10/12 px-1 py-2 rounded-lg font-medium border border-gray-500  text-sm font-serif focus:border-3  placeholder-gray-600 bg-white  focus:border-gray-400" type="text" placeholder="NA" />
+                          <input name="other_BG" onChange={handleInput} className="w-10/12 px-1 py-2 rounded-lg font-medium border border-gray-500  text-sm font-serif focus:border-3  placeholder-gray-600 bg-white  focus:border-gray-400" type="text" placeholder="NA" />
                       </div>
                       <div className="space-y-2">
                           <h4 className="font-sans">Gender <span className="text-red-500 font-bold">*</span></h4>
-                          <select id="gender" className="bg-white border px-2 py-2 font-medium cursor-pointer font-sans border-gray-500 text-gray-900 text-sm rounded-lg focus:border-gray-400 w-10/12 ">
+                          <select name="gender" onChange={handleInput} id="gender" className="bg-white border px-2 py-2 font-medium cursor-pointer font-sans border-gray-500 text-gray-900 text-sm rounded-lg focus:border-gray-400 w-10/12 ">
                               <option selected className="font-sans">Select Gender</option>
                               <option value="male" className="font-sans">Male</option>
                               <option value="female" className="font-sans">Female</option>
                           </select>                    
+                          <span className="text-sm text-red-500">{errors.gender && <p>{errors.gender}</p>}</span>
+                      
                       </div> 
                       <div className="space-y-2">
                           <h4 className="font-sans">Nationality <span className="text-red-500 font-bold">*</span></h4>
-                          <select id="nation" className="bg-white border px-2 py-2 font-medium cursor-pointer font-sans border-gray-500 text-gray-900 text-sm rounded-lg focus:border-gray-400 w-10/12 ">
+                          <select name="nationality" onChange={handleInput} id="nation" className="bg-white border px-2 py-2 font-medium cursor-pointer font-sans border-gray-500 text-gray-900 text-sm rounded-lg focus:border-gray-400 w-10/12 ">
                               <option selected className="font-sans">Select Nationality</option>
                               <option value="india" className="font-sans">India</option>
                               <option value="other" className="font-sans">Other</option>
                           </select>  
+                          <span className="text-sm text-red-500">{errors.nationality && <p>{errors.nationality}</p>}</span>
+                     
                       </div>
                       <div className="space-y-2">
                           <h4 className="font-sans">Religion <span className="text-red-500 font-bold">*</span></h4>
-                          <input className="w-10/12 px-2 py-2 rounded-lg font-medium border border-gray-500  text-sm  focus:border-3   bg-white  focus:border-gray-400" type="text" />
+                          <input name="religion" onChange={handleInput} className="w-10/12 px-2 py-2 rounded-lg font-medium border border-gray-500  text-sm  focus:border-3   bg-white  focus:border-gray-400" type="text" />
+                          <span className="text-sm text-red-500">{errors.religion && <p>{errors.religion}</p>}</span>
                       </div>
                       <div className="space-y-2 font-sans">
                           <h4 className="font-sans">Community <span className="text-red-500 font-bold">*</span></h4>
-                          <select id="community" className="bg-white border px-2 py-2 font-medium cursor-pointer font-sans border-gray-500 text-gray-900 text-sm rounded-lg focus:border-gray-400 w-10/12">
+                          <select name="community" onChange={handleInput} id="community" className="bg-white border px-2 py-2 font-medium cursor-pointer font-sans border-gray-500 text-gray-900 text-sm rounded-lg focus:border-gray-400 w-10/12">
                               <option selected className="font-sans">Select Community</option>
                               <option value="BC" className="font-sans">BC</option>
                               <option value="MBC" className="font-sans">MBC</option>
@@ -110,27 +249,36 @@ export const ERegisterForm = () => {
                               <option value="ST" className="font-sans">ST</option>
                               <option value="SCA" className="font-sans">SCA</option>
                               <option value="DNC" className="font-sans">DNC</option>
-                          </select>                    
+                          </select>    
+                          <span className="text-sm text-red-500">{errors.community && <p>{errors.community}</p>}</span>
+
                       </div>
                       <div className="space-y-2">
                           <h4 className="font-sans">Caste <span className="text-red-500 font-bold">*</span></h4>
-                          <input className="w-10/12 px-2 py-2 rounded-lg font-medium border border-gray-500  text-sm  focus:border-3   bg-white  focus:border-gray-400" type="text" />
+                          <input name="caste" onChange={handleInput} className="w-10/12 px-2 py-2 rounded-lg font-medium border border-gray-500  text-sm  focus:border-3   bg-white  focus:border-gray-400" type="text" />
+                          <span className="text-sm text-red-500">{errors.caste && <p>{errors.caste}</p>}</span>
                       </div>
                       <div className="space-y-2">
                           <h4 className="font-sans">Differently Abled <span className="text-red-500 font-bold">*</span></h4>
-                          <select id="differently-abled" className="bg-white border px-2 py-2 font-medium cursor-pointer font-sans border-gray-500 text-gray-900 text-sm rounded-lg focus:border-gray-400 w-10/12 ">
+                          <select name="differently_abled" onChange={handleInput} id="differently-abled" className="bg-white border px-2 py-2 font-medium cursor-pointer font-sans border-gray-500 text-gray-900 text-sm rounded-lg focus:border-gray-400 w-10/12 ">
                               <option selected className="font-sans">-------</option>
                               <option value="yes" className="font-sans">Yes</option>
                               <option value="no" className="font-sans">No</option>
                           </select>                    
+                          <span className="text-sm text-red-500">{errors.differently_abled && <p>{errors.differently_abled}</p>}</span>
+
                       </div> 
                       <div className="space-y-2">
                           <h4 className="font-sans">Student Mobile <span className="text-red-500 font-bold">*</span></h4>
-                          <input className="w-10/12 px-2 py-2 rounded-lg font-medium border border-gray-500  text-sm  focus:border-3   bg-white  focus:border-gray-400" type="text" />
+                          <input name="student_mobile_no" onChange={handleInput} className="w-10/12 px-2 py-2 rounded-lg font-medium border border-gray-500  text-sm  focus:border-3   bg-white  focus:border-gray-400" type="text" />
+                          <span className="text-sm text-red-500">{errors.student_mobile_no && <p>{errors.student_mobile_no}</p>}</span>
+                      
                       </div>  
                       <div className="space-y-2">
                           <h4 className="font-sans">Student Mail <span className="text-red-500 font-bold">*</span></h4>
-                          <input className="w-10/12 px-2 py-2 rounded-lg font-medium border border-gray-500  text-sm  focus:border-3   bg-white  focus:border-gray-400" type="text" />
+                          <input name="student_email_id" onChange={handleInput} className="w-10/12 px-2 py-2 rounded-lg font-medium border border-gray-500  text-sm  focus:border-3   bg-white  focus:border-gray-400" type="text" />
+                          <span className="text-sm text-red-500">{errors.student_email_id && <p>{errors.student_email_id}</p>}</span>
+                      
                       </div>           
                   </div>
               </div>
@@ -139,70 +287,92 @@ export const ERegisterForm = () => {
                   <h6 className="text-2xl text-secondary font-bold tracking-wider ">Parent Details</h6>
                       <div className="space-y-2">
                           <h4 className="font-sans">Annual Income (In Rs.) <span className="text-red-500 font-bold">*</span></h4>
-                          <input className="w-full px-1 py-2 rounded-lg font-sans font-medium border border-gray-400  text-sm  focus:border-3   bg-white  focus:border-gray-400" type="text" />
+                          <input name="annual_income" onChange={handleInput} className="w-full px-1 py-2 rounded-lg font-sans font-medium border border-gray-400  text-sm  focus:border-3   bg-white  focus:border-gray-400" type="text" />
+                          <span className="text-sm text-red-500">{errors.annual_income && <p>{errors.annual_income}</p>}</span>
+                      
                       </div>
                       <div className="grid lg:grid-cols-5 md:grid-cols-1 gap-2">
                           {/* Father's Details */}
                           <div className="space-y-2">
                               <h4 className="font-sans">Father<span>&#39;</span>s Name</h4>
-                              <input className="w-10/12 px-1 py-2 rounded-lg font-sans font-medium border border-gray-400  text-sm  focus:border-3   bg-white  focus:border-gray-400" type="text" />
+                              <input name="father_name" disabled={checkboxState.father} onChange={handleInput} className={`w-10/12 px-1 py-2 rounded-lg font-sans font-medium border border-gray-400  text-sm  focus:border-3   bg-white  focus:border-gray-400 ${checkboxState.father ? 'opacity-50' : ''}`} type="text" />
+                              <span className="text-sm text-red-500">{errors.father_name && <p>{errors.father_name}</p>}</span>
+                          
                           </div>
                           <div className="space-y-2">
                               <h4 className="font-sans">Father<span>&#39;</span>s Occupation</h4>
-                              <input className="w-10/12 px-1 py-2 rounded-lg font-sans font-medium border border-gray-400  text-sm  focus:border-3   bg-white  focus:border-gray-400" type="text" />
+                              <input name="father_occupation" disabled={checkboxState.father} onChange={handleInput} className={`w-10/12 px-1 py-2 rounded-lg font-sans font-medium border border-gray-400  text-sm  focus:border-3   bg-white  focus:border-gray-400 ${checkboxState.father ? 'opacity-50' : ''}`} type="text" />
+                              <span className="text-sm text-red-500">{errors.father_occupation && <p>{errors.father_occupation}</p>}</span>
+                          
                           </div>
                           <div className="space-y-2">
                               <h4 className="font-sans">Father<span>&#39;</span>s Mobile No.</h4>
-                              <input className="w-10/12 px-1 py-2 rounded-lg font-sans font-medium border border-gray-400  text-sm  focus:border-3   bg-white  focus:border-gray-400" type="text" />
+                              <input name="father_mobile_no" disabled={checkboxState.father} onChange={handleInput} className={`w-10/12 px-1 py-2 rounded-lg font-sans font-medium border border-gray-400  text-sm  focus:border-3   bg-white  focus:border-gray-400 ${checkboxState.father ? 'opacity-50' : ''}`} type="text" />
+                              <span className="text-sm text-red-500">{errors.father_mobile_no && <p>{errors.father_mobile_no}</p>}</span>
+                          
                           </div>
                           <div className="space-y-2">
                               <h4 className="font-sans">Father<span>&#39;</span>s Mail</h4>
-                              <input className="w-10/12 px-1 py-2 rounded-lg font-sans font-medium border border-gray-400  text-sm  focus:border-3   bg-white  focus:border-gray-400" type="text" />
+                              <input name="father_email_no" disabled={checkboxState.father} onChange={handleInput} className={`w-10/12 px-1 py-2 rounded-lg font-sans font-medium border border-gray-400  text-sm  focus:border-3   bg-white  focus:border-gray-400 ${checkboxState.father ? 'opacity-50' : ''}`} type="text" />
+                              <span className="text-sm text-red-500">{errors.father_email_no && <p>{errors.father_email_no}</p>}</span>
+                          
                           </div>
                           <div className="flex items-center">
-                              <input type="checkbox"  />
+                              <input type="checkbox" checked={checkboxState.father} onChange={() => handleCheckbox('father')} />
                               <p className="font-sans p-2 text-sm">Click here if Father<span>&#39;</span>s Details is Not Applicable</p>
                           </div>
                           {/* Mother's Details */}
                           <div className="space-y-2">
                               <h4 className="font-sans">Mother<span>&#39;</span>s Name</h4>
-                              <input className="w-10/12 px-1 py-2 rounded-lg font-sans font-medium border border-gray-400  text-sm  focus:border-3   bg-white  focus:border-gray-400" type="text" />
+                              <input name="mother_name" disabled={checkboxState.mother} onChange={handleInput} className={`w-10/12 px-1 py-2 rounded-lg font-sans font-medium border border-gray-400  text-sm  focus:border-3   bg-white  focus:border-gray-400 ${checkboxState.mother ? 'opacity-50' : ''}`} type="text" />
+                              <span className="text-sm text-red-500">{errors.mother_name && <p>{errors.mother_name}</p>}</span>
+                          
                           </div>
                           <div className="space-y-2">
                               <h4 className="font-sans">Mother<span>&#39;</span>s Occupation</h4>
-                              <input className="w-10/12 px-1 py-2 rounded-lg font-sans font-medium border border-gray-400  text-sm  focus:border-3   bg-white  focus:border-gray-400" type="text" />
+                              <input name="mother_occupation" disabled={checkboxState.mother} onChange={handleInput} className={`w-10/12 px-1 py-2 rounded-lg font-sans font-medium border border-gray-400  text-sm  focus:border-3   bg-white  focus:border-gray-400 ${checkboxState.mother ? 'opacity-50' : ''}`} type="text" />
+                              <span className="text-sm text-red-500">{errors.mother_occupation && <p>{errors.mother_occupation}</p>}</span>
+                          
                           </div>
                           <div className="space-y-2">
                               <h4 className="font-sans">Mother<span>&#39;</span>s Mobile No.</h4>
-                              <input className="w-10/12 px-1 py-2 rounded-lg font-sans font-medium border border-gray-400  text-sm  focus:border-3   bg-white  focus:border-gray-400" type="text" />
+                              <input name="mother_mobile_no" disabled={checkboxState.mother} onChange={handleInput} className={`w-10/12 px-1 py-2 rounded-lg font-sans font-medium border border-gray-400  text-sm  focus:border-3   bg-white  focus:border-gray-400 ${checkboxState.mother ? 'opacity-50' : ''}`} type="text" />
+                              <span className="text-sm text-red-500">{errors.mother_mobile_no && <p>{errors.mother_mobile_no}</p>}</span>
+                          
                           </div>
                           <div className="space-y-2">
                               <h4 className="font-sans">Mother<span>&#39;</span>s Mail</h4>
-                              <input className="w-10/12 px-1 py-2 rounded-lg font-sans font-medium border border-gray-400  text-sm  focus:border-3   bg-white  focus:border-gray-400" type="text" />
+                              <input name="mother_email_no" disabled={checkboxState.mother} onChange={handleInput} className={`w-10/12 px-1 py-2 rounded-lg font-sans font-medium border border-gray-400  text-sm  focus:border-3   bg-white  focus:border-gray-400 ${checkboxState.mother ? 'opacity-50' : ''}`} type="text" />
+                              <span className="text-sm text-red-500">{errors.mother_email_no && <p>{errors.mother_email_no}</p>}</span>
+                          
                           </div>
                           <div className="flex items-center">
-                              <input type="checkbox"  />
+                              <input type="checkbox" checked={checkboxState.mother} onChange={() => handleCheckbox('mother')} />
                               <p className="font-sans p-2 text-sm">Click here if Mother<span>&#39;</span>s Details is Not Applicable</p>
                           </div>
                           {/* Guardian Details */}
                           <div className="space-y-2">
                               <h4 className="font-sans">Guardian<span>&#39;</span>s Name</h4>
-                              <input className="w-10/12 px-1 py-2 rounded-lg font-sans font-medium border border-gray-400  text-sm  focus:border-3   bg-white  focus:border-gray-400" type="text" />
+                              <input name="guardian_name" disabled={checkboxState.guardian} onChange={handleInput} className={`w-10/12 px-1 py-2 rounded-lg font-sans font-medium border border-gray-400  text-sm  focus:border-3   bg-white  focus:border-gray-400 ${checkboxState.guardian ? 'opacity-50' : ''}`} type="text" />
+                              <span className="text-sm text-red-500">{errors.guardian_name && <p>{errors.guardian_name}</p>}</span>
                           </div>
                           <div className="space-y-2">
                               <h4 className="font-sans">Guardian<span>&#39;</span>s Occupation</h4>
-                              <input className="w-10/12 px-1 py-2 rounded-lg font-sans font-medium border border-gray-400  text-sm  focus:border-3   bg-white  focus:border-gray-400" type="text" />
+                              <input name="guardian_occupation" disabled={checkboxState.guardian} onChange={handleInput} className={`w-10/12 px-1 py-2 rounded-lg font-sans font-medium border border-gray-400  text-sm  focus:border-3   bg-white  focus:border-gray-400 ${checkboxState.guardian ? 'opacity-50' : ''}`} type="text" />
+                              <span className="text-sm text-red-500">{errors.guardian_occupation && <p>{errors.guardian_occupation}</p>}</span>
                           </div>
                           <div className="space-y-2">
                               <h4 className="font-sans">Guardian<span>&#39;</span>s Mobile No.</h4>
-                              <input className="w-10/12 px-1 py-2 rounded-lg font-sans font-medium border border-gray-400  text-sm  focus:border-3   bg-white  focus:border-gray-400" type="text" />
+                              <input name="guardian_mobile_no" disabled={checkboxState.guardian} onChange={handleInput} className={`w-10/12 px-1 py-2 rounded-lg font-sans font-medium border border-gray-400  text-sm  focus:border-3   bg-white  focus:border-gray-400 ${checkboxState.guardian ? 'opacity-50' : ''}`} type="text" />
+                              <span className="text-sm text-red-500">{errors.guardian_mobile_no && <p>{errors.guardian_mobile_no}</p>}</span>
                           </div>
                           <div className="space-y-2">
                               <h4 className="font-sans">Guardian<span>&#39;</span>s Mail</h4>
-                              <input className="w-10/12 px-1 py-2 rounded-lg font-sans font-medium border border-gray-400  text-sm  focus:border-3   bg-white  focus:border-gray-400" type="text" />
+                              <input name="guardian_email_no" disabled={checkboxState.guardian} onChange={handleInput} className={`w-10/12 px-1 py-2 rounded-lg font-sans font-medium border border-gray-400  text-sm  focus:border-3   bg-white  focus:border-gray-400 ${checkboxState.guardian ? 'opacity-50' : ''}`} type="text" />
+                              <span className="text-sm text-red-500">{errors.guardian_email_no && <p>{errors.guardian_email_no}</p>}</span>
                           </div>
                           <div className="flex items-center">
-                              <input type="checkbox"  />
+                              <input type="checkbox" checked={checkboxState.guardian} onChange={() => handleCheckbox('guardian')} />
                               <p className="font-sans p-2 text-sm">Click here if Guardian<span>&#39;</span>s Details is Not Applicable</p>
                           </div>
                       </div>
@@ -216,23 +386,28 @@ export const ERegisterForm = () => {
                           <div className="grid lg:grid-cols-5 md:grid-cols-1 gap-2">
                               <div className="space-y-2">
                                   <h4 className="font-sans">Address with Door No. <span className="text-red-500 font-bold">*</span></h4>
-                                  <input className="w-10/12 px-1 py-2 rounded-lg font-sans font-medium border border-gray-400  text-sm  focus:border-3   bg-white  focus:border-gray-400" type="text" />
+                                  <input name="permanent_address" onChange={handleInput} className="w-10/12 px-1 py-2 rounded-lg font-sans font-medium border border-gray-400  text-sm  focus:border-3   bg-white  focus:border-gray-400" type="text" />
+                                  <span className="text-sm text-red-500">{errors.permanent_address && <p>{errors.permanent_address}</p>}</span>
                               </div>
                               <div className="space-y-2">
                                   <h4 className="font-sans">City. <span className="text-red-500 font-bold">*</span></h4>
-                                  <input className="w-10/12 px-1 py-2 rounded-lg font-sans font-medium border border-gray-400  text-sm  focus:border-3   bg-white  focus:border-gray-400" type="text" />
+                                  <input name="permanent_city" onChange={handleInput} className="w-10/12 px-1 py-2 rounded-lg font-sans font-medium border border-gray-400  text-sm  focus:border-3   bg-white  focus:border-gray-400" type="text" />
+                                  <span className="text-sm text-red-500">{errors.permanent_city && <p>{errors.permanent_city}</p>}</span>
                               </div>
                               <div className="space-y-2">
                                   <h4 className="font-sans">State. <span className="text-red-500 font-bold">*</span></h4>
-                                  <input className="w-10/12 px-1 py-2 rounded-lg font-sans font-medium border border-gray-400  text-sm  focus:border-3   bg-white  focus:border-gray-400" type="text" />
+                                  <input name="permanent_state" onChange={handleInput} className="w-10/12 px-1 py-2 rounded-lg font-sans font-medium border border-gray-400  text-sm  focus:border-3   bg-white  focus:border-gray-400" type="text" />
+                                  <span className="text-sm text-red-500">{errors.permanent_state && <p>{errors.permanent_state}</p>}</span>
                               </div>
                               <div className="space-y-2">
                                   <h4 className="font-sans">Country. <span className="text-red-500 font-bold">*</span></h4>
-                                  <input className="w-10/12 px-1 py-2 rounded-lg font-sans font-medium border border-gray-400  text-sm  focus:border-3   bg-white  focus:border-gray-400" type="text" />
+                                  <input name="permanent_country" onChange={handleInput} className="w-10/12 px-1 py-2 rounded-lg font-sans font-medium border border-gray-400  text-sm  focus:border-3   bg-white  focus:border-gray-400" type="text" />
+                                  <span className="text-sm text-red-500">{errors.permanent_country && <p>{errors.permanent_country}</p>}</span>
                               </div>
                               <div className="space-y-2">
                                   <h4 className="font-sans">Pin Code. <span className="text-red-500 font-bold">*</span></h4>
-                                  <input className="w-10/12 px-1 py-2 rounded-lg font-sans font-medium border border-gray-400  text-sm  focus:border-3   bg-white  focus:border-gray-400" type="text" />
+                                  <input name="permanent_pincode" onChange={handleInput} className="w-10/12 px-1 py-2 rounded-lg font-sans font-medium border border-gray-400  text-sm  focus:border-3   bg-white  focus:border-gray-400" type="text" />
+                                  <span className="text-sm text-red-500">{errors.permanent_pincode && <p>{errors.permanent_pincode}</p>}</span>
                               </div>
                           </div>
                       </div>
@@ -240,30 +415,30 @@ export const ERegisterForm = () => {
                       <div>
                           <h6 className="text-2xl text-secondary font-bold tracking-wide">Communication Address</h6>
                           <div className="flex items-center">
-                              <input type="checkbox"  />
+                              <input type="checkbox" checked={sameAsPermanent} onChange={handleCheckboxChange} />
                               <p className="font-sans p-2 text-sm">Same as Permanent Address</p>
                           </div>
   
                           <div className="grid lg:grid-cols-5 md:grid-cols-1 gap-2">
                               <div className="space-y-2">
                                   <h4 className="font-sans">Address with Door No. <span className="text-red-500 font-bold">*</span></h4>
-                                  <input className="w-10/12 px-1 py-2 rounded-lg font-sans font-medium border border-gray-400  text-sm  focus:border-3   bg-white  focus:border-gray-400" type="text" />
+                                  <input name="communication_address" onChange={handleInput} disabled={sameAsPermanent} className={`w-10/12 px-1 py-2 rounded-lg font-sans font-medium border border-gray-400  text-sm  focus:border-3   bg-white  focus:border-gray-400 ${sameAsPermanent ? 'opacity-50' : ''}`} type="text" />
                               </div>
                               <div className="space-y-2">
                                   <h4 className="font-sans">City. <span className="text-red-500 font-bold">*</span></h4>
-                                  <input className="w-10/12 px-1 py-2 rounded-lg font-sans font-medium border border-gray-400  text-sm  focus:border-3   bg-white  focus:border-gray-400" type="text" />
+                                  <input name="communication_city" onChange={handleInput} disabled={sameAsPermanent} className={`w-10/12 px-1 py-2 rounded-lg font-sans font-medium border border-gray-400  text-sm  focus:border-3   bg-white  focus:border-gray-400 ${sameAsPermanent ? 'opacity-50' : ''}`} type="text" />
                               </div>
                               <div className="space-y-2">
                                   <h4 className="font-sans">State. <span className="text-red-500 font-bold">*</span></h4>
-                                  <input className="w-10/12 px-1 py-2 rounded-lg font-sans font-medium border border-gray-400  text-sm  focus:border-3   bg-white  focus:border-gray-400" type="text" />
+                                  <input name="communication_state" onChange={handleInput} disabled={sameAsPermanent} className={`w-10/12 px-1 py-2 rounded-lg font-sans font-medium border border-gray-400  text-sm  focus:border-3   bg-white  focus:border-gray-400 ${sameAsPermanent ? 'opacity-50' : ''}`} type="text" />
                               </div>
                               <div className="space-y-2">
                                   <h4 className="font-sans">Country. <span className="text-red-500 font-bold">*</span></h4>
-                                  <input className="w-10/12 px-1 py-2 rounded-lg font-sans font-medium border border-gray-400  text-sm  focus:border-3   bg-white  focus:border-gray-400" type="text" />
+                                  <input name="communication_country" onChange={handleInput} disabled={sameAsPermanent} className={`w-10/12 px-1 py-2 rounded-lg font-sans font-medium border border-gray-400  text-sm  focus:border-3   bg-white  focus:border-gray-400 ${sameAsPermanent ? 'opacity-50' : ''}`} type="text" />
                               </div>
                               <div className="space-y-2">
                                   <h4 className="font-sans">Pin Code. <span className="text-red-500 font-bold">*</span></h4>
-                                  <input className="w-10/12 px-1 py-2 rounded-lg font-sans font-medium border border-gray-400  text-sm  focus:border-3   bg-white  focus:border-gray-400" type="text" />
+                                  <input name="communication_pincode" onChange={handleInput} disabled={sameAsPermanent} className={`w-10/12 px-1 py-2 rounded-lg font-sans font-medium border border-gray-400  text-sm  focus:border-3   bg-white  focus:border-gray-400 ${sameAsPermanent ? 'opacity-50' : ''}`} type="text" />
                               </div>
                           </div>
                       </div>  
@@ -286,6 +461,7 @@ export const ERegisterForm = () => {
                   <button className="bg-secondary  hover:bg-primary text-white font-bold py-2 px-4 rounded"> Submit </button>
                   </div>
               </div>
+              </form>
           </div>
       </div>
           
