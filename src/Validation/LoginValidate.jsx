@@ -14,7 +14,10 @@ function Validation(values) {
         error.password = "Password should not be empty"
     }
     else if(!password_pattern.test(values.password)) {
-        error.password = "Password should be 8 characters include contain at least one digit, contain at least one lowercase letter, contain at least one uppercase letter."
+        error.password = `Password should be 8 characters long and include:<br/> 
+        - At least one digit<br/> 
+        - At least one lowercase letter<br/> 
+        - At least one uppercase letter.`;
     }
     else {
         error.password = ""

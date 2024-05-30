@@ -1,13 +1,15 @@
+import { motion } from "framer-motion"
+import { fadeIn } from "./variants";
 
 export const Welcome = () => {
   return (
     <>
         <div> 
-            <div className="bgWelcomebg text-white  text-center h-[80vh] lg:w-1/2 lg:space-y-10 space-x-6 flex flex-col border-none rounded-3xl m-auto justify-items-center items-center">
+            <motion.div variants={fadeIn("right", 0.2)} initial="hidden" whileInView={"show"} viewport={{once:true, amount: 0.7}} className="bgWelcomebg text-white  text-center h-[80vh] lg:w-1/2 lg:space-y-10 space-x-6 flex flex-col border-none rounded-3xl m-auto justify-items-center items-center">
               <h1 className="font-semibold lg:text-3xl text-xl p-6 md:p-6 mt-6 sm:mt-8 border-b">HOSTEL MANAGEMENT</h1>
               <hr className="my-2"/>
               <p className="m-8 md:m-8 text-md text-clip lg:text-xl lg:mb-28 mb-10 p-4 tracking-wider">The Hostel is managed by the Hostel Residents Council consisting of Patron, Chief Warden, Wardens, Manager, Deputy Wardens, Resident Tutors and Student Representatives.Ragging in all its forms is banned as it is treated as a cognizable offence. Any resident found guilty of ragging will be dismissed from hostel and college. Further, legal action will be taken against the defaulters.</p>
-            </div>
+            </motion.div>
         </div>
       
     </>

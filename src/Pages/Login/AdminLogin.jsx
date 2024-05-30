@@ -3,7 +3,9 @@ import { ALogin } from "../../components/Admin/ALogin";
 
 
 
+
 function AdminLogin() {
+
     return (
         <>
             <div className="bgAdminLogin bg-cover h-[100vh] flex justify-center items-center text-white">

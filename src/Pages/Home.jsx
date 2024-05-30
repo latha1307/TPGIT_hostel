@@ -7,7 +7,7 @@ import { HomeBody } from '../components/HomeBody';
 function Home() {
   return (
     <>
-        <div>
+        <div className='bg-[#F5F5F5]'>
             <Banner/>
             <div className='bgWelcome  h-[100vh] mt-26 lg:p-16 p-8 bg-cover' >
               <Welcome/>
