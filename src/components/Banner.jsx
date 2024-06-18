@@ -18,7 +18,7 @@ export function Banner()  {
         {link: "Home", path: "/home"},
         {link: "About", path: "/about"},
         {link: "Fees", path: "#"},
-        {link: "Contact", path: "#"},
+        {link: "Contact", path: "/contact"},
     ];
 
     return (

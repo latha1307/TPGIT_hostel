@@ -60,13 +60,9 @@ export const Footer = () => {
           </ul>
         </div>
         <div className="space-y-5">
-          <h4 className="font-semibold">Developers</h4>
+          <h4 className="font-semibold">Developed by,</h4>
           <ul className="space-y-2 ml-4">
             <li>Lathadevi B</li>
-            <li>Bhavani R</li>
-            <li>Jana K</li>
-            <li>Agarsha S</li>
-            <li>Iniya G</li>
           </ul>
         </div>
       </div>

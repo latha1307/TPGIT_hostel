@@ -45,14 +45,14 @@ import { fadeIn } from "./variants";
                <img src={b1} alt="Boys Hostel" className="mb-4  rounded-3xl" />
                <h3 className="text-lg font-semibold mb-2">B1 Hostel</h3>
               <p className="text-gray-200">
-               The boys<span>&apos;</span> hostels at TPGIT are designed to provide a safe, welcoming, and conducive environment for students. Spread across three distinct buildings, these hostels cater to the accommodation needs of over 400 students. Each hostel is equipped with modern amenities, ensuring that students have access to everything they need for a productive and enjoyable college experience. From spacious rooms and common areas to high-speed internet and recreational facilities.
+               The boys<span>&apos;</span> hostels at TPGIT are designed to provide a safe, welcoming, and conducive environment for students. Spread across three distinct buildings, these hostels cater to the accommodation students. Each hostel is equipped with modern amenities, ensuring that students have access to everything they need for a productive and enjoyable college experience. From spacious rooms and common areas to high-speed internet and recreational facilities.
                </p>
              </motion.div>
              <motion.div variants={fadeIn("right", 0.4)} initial="hidden" whileInView="show" viewport={{once:true, amount: 0.7}} className="border-none rounded-3xl p-6  bg-gray-100 bg-gradient-to-b from-[#724a9e] via-[#724a9e] to-[#724a9e] ">
                <img src={b2} alt="Boys Hostel" className="mb-4 rounded-3xl" />
                <h3 className="text-lg font-semibold mb-2">B2 Hostel</h3>
                <p className="text-gray-200">
-                 The B1 Hostel, the largest of the three, offers accommodation for approximately 210 students. It is known for its well-structured living spaces and serene environment that fosters a sense of community among the residents. The B2 Hostel, with a capacity of around 165 students, with an emphasis on creating a balanced lifestyle that combines study and leisure. Finally, the B3 Hostel, accommodating between 100 to 120 students, offers a more intimate setting.
+                 The B2 Hostel, the largest of the three, offers accommodation for approximately 210 students. It is known for its well-structured living spaces and serene environment that fosters a sense of community among the residents. The B2 Hostel, with a capacity of around 165 students, with an emphasis on creating a balanced lifestyle that combines study and leisure. Finally, the B3 Hostel, accommodating between 100 to 120 students, offers a more intimate setting.
                </p>
              </motion.div>
              <motion.div variants={fadeIn("right", 0.2)} initial="hidden" whileInView={"show"} viewport={{once:true, amount: 0.7}} className="border-none rounded-3xl p-6   bg-gray-100 bg-gradient-to-b from-[#724a9e] via-[#724a9e] to-[#724a9e]">

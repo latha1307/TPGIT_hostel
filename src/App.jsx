@@ -12,6 +12,7 @@ import SHomePage from './Pages/Student/HomePage';
 import Vacate from './Pages/Student/Vacate';
 import AHomePage from './Pages/Admin/HomePage';
 import Transition from './components/Transition';
+import Contacts from './Pages/ContactPage';
 
 function App() {
   const location = useLocation();
@@ -26,6 +27,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/new-student-register" element={<NewRegister />} />
+          <Route path="/contact" element={<Contacts />} />
           <Route path="/existing-student-register" element={<ExistingRegistration />} />
           <Route path="/admin-login" element={<AdminLogin />} />
           <Route path="/student-login" element={<StudentLogin />} />
