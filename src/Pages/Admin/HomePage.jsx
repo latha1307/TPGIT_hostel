@@ -11,7 +11,7 @@ function HomePage () {
                 <div className=" mt-24 ">
                     <AAccesses/>
                 </div>
-          </div>
+            </div>
       
         </>
     )

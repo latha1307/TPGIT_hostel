@@ -13,6 +13,7 @@ import Vacate from './Pages/Student/Vacate';
 import AHomePage from './Pages/Admin/HomePage';
 import Transition from './components/Transition';
 import Contacts from './Pages/ContactPage';
+import { StudentRequestPage } from './Pages/Admin/StudentRequestPage';
 
 function App() {
   const location = useLocation();
@@ -34,6 +35,7 @@ function App() {
           <Route path="/student-profile" element={<SHomePage />} />
           <Route path="/student-vacate" element={<Vacate />} />
           <Route path="/admin-home" element={<AHomePage />} />
+          <Route path='/admin-student-requests' element={<StudentRequestPage/>}/>
         </Routes>
       </motion.div>
     </AnimatePresence>

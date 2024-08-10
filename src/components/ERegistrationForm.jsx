@@ -145,13 +145,13 @@ export const ERegisterForm = () => {
                       </div>
                       <div className="space-y-2 font-sans">
                           <h4 className="font-sans">Programme <span className="text-red-500 font-bold">*</span></h4>
-                          <select name="courses" onChange={handleInput} id="courses" className="bg-white border px-2 py-2 font-medium cursor-pointer font-sans border-gray-500 text-gray-900 text-sm rounded-lg focus:border-gray-400 w-10/12">
+                          <select name="courses" onChange={handleInput} id="course" className="bg-white border px-2 py-2 font-medium cursor-pointer font-sans border-gray-500 text-gray-900 text-sm rounded-lg focus:border-gray-400 w-10/12">
                               <option selected className="font-sans">Select Course</option>
-                              <option value="CE" className="font-sans">B.E Civil Engineering</option>
-                              <option value="CSE" className="font-sans">B.E Computer Science Engineering</option>
-                              <option value="ECE" className="font-sans">B.E Electronics and Communication Engineering</option>
-                              <option value="EEE" className="font-sans">B.E Electrical and Electronics Engineering</option>
-                              <option value="ME" className="font-sans">B.E Mechanical Engineering</option>
+                              <option value="CE" className="font-sans">B.E CE</option>
+                              <option value="CSE" className="font-sans">B.E CSE</option>
+                              <option value="ECE" className="font-sans">B.E ECE</option>
+                              <option value="EEE" className="font-sans">B.E EEE</option>
+                              <option value="ME" className="font-sans">B.E ME</option>
                           </select>                    
                           <span className="text-sm text-red-500">{errors.courses && <p>{errors.courses}</p>}</span>
                       
