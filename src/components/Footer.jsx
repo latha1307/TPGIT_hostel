@@ -63,6 +63,7 @@ export const Footer = () => {
           <h4 className="font-semibold">Developed by,</h4>
           <ul className="space-y-2 ml-4">
             <li>Lathadevi B</li>
+            <li>Jana K </li>
           </ul>
         </div>
       </div>
